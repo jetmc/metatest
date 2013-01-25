@@ -1,16 +1,31 @@
-"""
-This file demonstrates writing tests using the unittest module. These will pass
-when you run "manage.py test".
+from os import path
 
-Replace this with more appropriate tests for your application.
-"""
+import models
 
 from django.test import TestCase
+import yaml
+
+
+models_path = path.join(path.dirname(path.abspath(__file__)), 'models.yaml')
+models_info = yaml.load(open(models_path, 'r'))
 
 
 class SimpleTest(TestCase):
-    def test_basic_addition(self):
-        """
-        Tests that 1 + 1 always equals 2.
-        """
-        self.assertEqual(1 + 1, 2)
+
+    fixtures = ['data.json']
+    info = {}
+
+    def setUp(self):
+        for name, meta in models_info.items():
+            self.info[name.capitalize()] = meta
+
+    def test_has_created_models(self):
+        for name in self.info:
+            self.assertTrue(hasattr(models, name))
+
+    def test_model_fields(self):
+        for name, meta in self.info.iteritems():
+            model = getattr(models, name)()
+            for field in meta['fields']:
+                type, name_, title = field.values()
+                self.assertTrue(hasattr(model, name_))

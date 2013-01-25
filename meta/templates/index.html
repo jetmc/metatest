@@ -1,0 +1,19 @@
+<html>
+  <head>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/main.js"></script>
+    <style type="text/css" media="screen" src="{{ STATIC_URL }}css/main.css"></style>
+  </head>
+  <body>
+    <div id="">
+      <div id="models">
+        <ul>
+          {% for model in models %}
+          <li><a data-model="{{ model }}">{{ model }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div id="items">
+      </div>
+    </div>
+  </body>
+</html>
