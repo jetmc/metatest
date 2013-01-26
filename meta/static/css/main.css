@@ -1,0 +1,43 @@
+#tabs {
+    width: 30%;
+    display: inline-block;
+}
+#tabs a {
+    cursor: pointer;
+}
+#tabs .active {
+    text-decoration: underline;
+}
+#content {
+    width: 65%;
+    display: inline-block;
+}
+
+.items li{
+    border-bottom: 1px solid #001;
+    padding: 3px 0;
+}
+
+
+.tabs_content li.tab{
+    list-style: none;
+    display: none;
+}
+.tab ul {
+    padding-left: 0;
+    list-style: none;
+}
+
+
+.active {
+    display: block !important;
+}
+
+
+#content span{
+    display: inline-block;
+    width: 130px;
+}
+#content span.edit{
+    cursor: pointer;
+}

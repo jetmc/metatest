@@ -1,1 +1,1 @@
-[{"pk": 1, "model": "meta.users", "fields": {"paycheck": 111, "name": "test", "date_joined": "2013-01-25"}}, {"pk": 1, "model": "meta.rooms", "fields": {"department": "f", "name": "f", "spots": 1}}]
+[{"pk": 1, "model": "meta.users", "fields": {"paycheck": 111, "name": "test", "date_joined": "2013-01-25"}}, {"pk": 1, "model": "meta.rooms", "fields": {"department": "f", "spots": 1}}]

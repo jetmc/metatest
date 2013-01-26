@@ -1,4 +1,4 @@
 django
 south
-django-tasypie
+django-tastypie
 pyyaml

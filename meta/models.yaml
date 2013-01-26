@@ -8,6 +8,5 @@ users:
 rooms:
     title: Комнаты
     fields:
-        - {id: name, title: Имя, type: char}
         - {id: department, title: Отдел, type: char}
         - {id: spots, title: Вместимость, type: int}

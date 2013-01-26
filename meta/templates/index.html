@@ -1,19 +1,78 @@
 <html>
   <head>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/main.js"></script>
-    <style type="text/css" media="screen" src="{{ STATIC_URL }}css/main.css"></style>
+    <link href="{{ STATIC_URL }}css/main.css" type="text/css" rel="stylesheet"/>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/jquery-ui-1.10.0.custom.min.css" />
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.10.0.custom.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/underscore.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/json2.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/backbone.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/backbone-forms.js"></script>
+
   </head>
   <body>
-    <div id="">
-      <div id="models">
+    <div id="contaier">
+      <div id="tabs">
         <ul>
-          {% for model in models %}
-          <li><a data-model="{{ model }}">{{ model }}</a></li>
-          {% endfor %}
+          <li class="active"><a href="#/tab/users">Users</a></li>
+          <li><a href="#/tab/rooms">Rooms</a></li>
+        </ul>
+
+      </div>
+      <div id="content">
+        <ul class="tabs_content">
+          <li class="users tab">
+            <div>
+              <p>
+                <span class="id">id</span>
+                <span class="name">name</span>
+                <span class="paycheck">paycheck</span>
+                <span class="date_joined">date</span>
+              </p>
+              <ul class="items" id="users"></ul>
+              <p class="form">
+                <button class="addbtn">Add</button>
+              </p>
+            </div>
+          </li>
+          <li class="rooms tab">
+            <div>
+              <p>
+                <span class="id">id</span>
+                <span class="department">department</span>
+                <span class="spots">spots</span>
+              </p>
+              <ul class="items" id="rooms"></ul>
+              <p class="form">
+                <button class="addbtn">Add</button>
+              </p>
+            </div>
+          </li>
         </ul>
       </div>
-      <div id="items">
-      </div>
     </div>
+    <div style="display: none;">
+      <li type="text/template" class="user_view">
+        <span><%= id %></span>
+        <span data-name="name" class="edit"><%= name %></span>
+        <span data-name="paycheck" class="edit" data-type="int"><%= paycheck %></span>
+        <span data-name="date_joined" class="date" data-type="date"><%= date_joined %></span>
+        <span id="delete" class="edit">delete</span>
+      </li>
+
+      <li type="text/template" class="room_view">
+        <span class="id"><%= id %></span>
+        <span data-name="department" class="edit"><%= department %></span>
+        <span data-name="spots" class="edit" data-type="int"><%= spots %></span>
+        <span id="delete" class="edit">delete</span>
+      </li>
+    </div>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/main.js"></script>
+    <script type="text/javascript">
+      {% autoescape off %}
+      App.rooms = new Rooms({{ rooms }});
+      App.users = new Users({{ users }});
+      {% endautoescape %}
+    </script>
   </body>
 </html>
