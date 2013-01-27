@@ -153,8 +153,11 @@ var UsersView = BaseView.extend({
         if(App.users.get(user.id) == undefined) {
             App.users.add(user);
         }
-        var user = new UserView({model: user});
-        $('#users').append(user.render().el);
+        if (!$("#user-" + user.id).length){
+            var user = new UserView({model: user,
+                                     id: "user-" + user.id});
+            $('#users').append(user.render().el);
+        }
     }
 });
 
@@ -170,8 +173,15 @@ var RoomsView = BaseView.extend({
     },
 
     addOne: function(room){
-        var room = new RoomView({model:room});
-        $('#rooms').append(room.render().el)
+        if(App.rooms.get(room.id) == undefined) {
+            App.rooms.add(room);
+        }
+        if (!$("#room-" + room.id).length){
+            var room = new RoomView({model:room,
+                                     id: "room-" + room.id});
+            $('#rooms').append(room.render().el);
+        }
+
     },
 });
 
