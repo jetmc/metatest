@@ -125,6 +125,7 @@ var Form = Backbone.Form.extend({
         this.model.save(this.model.toJSON(),
                         {success: function(model, resp){
                             callback(model);
+                            model.clear({silent: true});
                         }});
     }
 });
@@ -153,11 +154,9 @@ var UsersView = BaseView.extend({
         if(App.users.get(user.id) == undefined) {
             App.users.add(user);
         }
-        if (!$("#user-" + user.id).length){
-            var user = new UserView({model: user,
-                                     id: "user-" + user.id});
-            $('#users').append(user.render().el);
-        }
+        var user_view = new UserView({model: user,
+                                      id: "user-" + user.id});
+        $('#users').append(user_view.render().el);
     }
 });
 
@@ -176,12 +175,9 @@ var RoomsView = BaseView.extend({
         if(App.rooms.get(room.id) == undefined) {
             App.rooms.add(room);
         }
-        if (!$("#room-" + room.id).length){
-            var room = new RoomView({model:room,
-                                     id: "room-" + room.id});
-            $('#rooms').append(room.render().el);
-        }
-
+        var room_view = new RoomView({model:room,
+                                      id: "room-" + room.id});
+        $('#rooms').append(room_view.render().el);
     },
 });
 
